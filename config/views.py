@@ -8,11 +8,14 @@ def inicio(request): # el index
     return HttpResponse("hola ")
 
 
-def probando_template(request):
-   # Es necesario importar las clases Context y Template: from django.template import Context, Template
-    mi_html = open("./templates/template1.html", encoding="utf-8")
-    mi_template = Template(mi_html.read())
-    mi_html.close()
-    mi_contexto = Context()
-    mi_documento = mi_template.render(mi_contexto) 
-    return HttpResponse(mi_documento)
+def probando_template_render(request): 
+    nombre = "Louis" 
+    apellido = "Van Beethoven" 
+    datos = { "nombre": nombre, "apellido": apellido}
+    return render(request, "template1.html", context=datos)
+
+
+def probando_template2(request):
+    lista_de_notas = [2, 2, 3, 7, 5] 
+    contexto = {"notas": lista_de_notas} 
+    return render(request, "template2.html", contexto)
